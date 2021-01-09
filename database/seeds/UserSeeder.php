@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -15,7 +16,9 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Administrator',
             'email' => 'admin@admin.com',
+            'email_verified_at' => now(),
             'password' => bcrypt('password'),
+            'remember_token' => Str::random(10),
         ]);
     }
 }
