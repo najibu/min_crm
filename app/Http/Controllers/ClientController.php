@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\Http\Requests\Client as Requests;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,9 +13,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Requests\IndexRequest $request)
     {
-        //
+        return view('clients.index');
     }
 
     /**
