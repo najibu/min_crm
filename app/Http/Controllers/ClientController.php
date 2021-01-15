@@ -25,18 +25,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('clients.create');
     }
 
     /**
@@ -47,7 +36,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('clients.show', compact('client'));
     }
 
     /**

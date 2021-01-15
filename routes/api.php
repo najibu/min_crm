@@ -19,5 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->group(function () {
-    Route::get('clients', 'ClientController@index');
+    Route::resource('clients', 'ClientController', [
+        'only' => ['index', 'store']
+    ]);
 });

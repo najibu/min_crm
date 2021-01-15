@@ -4,11 +4,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Clients
+                        List of clients
                     </div>
 
                     <div class="card-body">
-
+                        <div>
+                            <a :href="createLink" class="text-primary mb-2">
+                                Create a new client
+                            </a>
+                        </div>
 
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover">
@@ -23,7 +27,11 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="client in clients.data">
-                                        <th scope="row">{{ client.id }}</th>
+                                        <th scope="row">
+                                            <a :href="'/clients/' + client.id">
+                                                {{ client.id }}
+                                            </a>
+                                        </th>
                                         <td>{{ client.first_name }}</td>
                                         <td>{{ client.last_name }}</td>
                                         <td>
@@ -45,22 +53,26 @@
 
 <script>
     export default {
+        props: {
+            createLink: {
+                required: true
+            }
+        },
+
         data() {
             return {
-                // Our data object that holds the Laravel paginator data
                 clients: {},
             }
         },
 
         mounted() {
-            // Fetch initial results
             this.getResults();
         },
 
     methods: {
-        // Our method to GET results from a Laravel endpoint
         getResults(page = 1) {
-            axios.get('api/clients?page=' + page)
+            axios
+                .get('/api/clients?page=' + page)
                 .then(response => {
                     this.clients = response.data;
                 });
