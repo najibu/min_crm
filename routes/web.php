@@ -25,4 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('clients', 'ClientController', [
         'only' => ['index', 'create', 'show', 'edit']
     ]);
+
+    Route::resource('transactions', 'TransactionController', [
+        'only' => ['index', 'create', 'show', 'edit']
+    ]);
 });

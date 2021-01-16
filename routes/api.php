@@ -22,4 +22,8 @@ Route::namespace('Api')->group(function () {
     Route::resource('clients', 'ClientController', [
         'only' => ['index', 'store', 'update', 'destroy']
     ]);
+
+    Route::resource('transactions', 'TransactionController', [
+        'only' => ['index', 'store', 'update', 'destroy']
+    ]);
 });

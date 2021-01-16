@@ -51,7 +51,12 @@
                         @else
                             <li class="nav-item">
                                 <a href="{{ route('clients.index') }}" class="nav-link" >
-                                    Client
+                                    Clients
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('transactions.index') }}" class="nav-link" >
+                                    Transactions
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
