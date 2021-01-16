@@ -23,6 +23,7 @@
                                         <th scope="col">Last Name</th>
                                         <th scope="col">Avatar</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,9 +36,23 @@
                                         <td>{{ client.first_name }}</td>
                                         <td>{{ client.last_name }}</td>
                                         <td>
-                                            <img :src="client.avatar" height="32" width="32">
+                                            <img :src="client.avatar"
+                                                height="100"
+                                                width="100">
                                         </td>
                                         <td>{{ client.email }}</td>
+                                        <td>
+                                            <a :href="editLink(client.id)"
+                                                class="btn btn-primary">
+                                                Edit
+                                            </a>
+
+                                            <button type="button"
+                                                @click.prevent="destroy(client.id)"
+                                                class="btn btn-danger">
+                                                Delete
+                                            </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -76,7 +91,22 @@
                 .then(response => {
                     this.clients = response.data;
                 });
-        }
+        },
+
+        editLink (id) {
+            return `/clients/${id}/edit`;
+        },
+
+        destroy (id) {
+            axios
+                .delete(`/api/clients/${id}`)
+                .then(response => {
+                    location.reload();
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        },
     }
 
     };

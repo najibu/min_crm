@@ -76,7 +76,10 @@
             isNew: {
                 required: true,
                 type: Boolean,
-            }
+            },
+            clientData: {
+                type: Object
+            },
         },
 
         data () {
@@ -91,9 +94,19 @@
             }
         },
 
+        created () {
+            this.getClientData();
+        },
+
         methods: {
             selectedAvatar (event) {
                 this.client.avatar = event.target.files[0];
+            },
+
+            getClientData () {
+                if (!_.isEmpty(this.clientData)) {
+                    Object.assign(this.client, this.clientData);
+                }
             },
 
             formData (client) {
@@ -120,9 +133,9 @@
 
                 let data = this.formData(this.client);
 
-                if (this.isNew) {
-                    this.create(data);
-                }
+                this.isNew
+                    ? this.create(data)
+                    : this.update(data);
             },
 
             redirectToClients () {
@@ -134,6 +147,22 @@
                     .post('/api/clients', data)
                     .then(response => {
                         alert('Client successfully created');
+
+                        this.redirectToClients();
+
+                        this.isDoneLoading();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.isDoneLoading();
+                    })
+            },
+
+            update (data) {
+                axios
+                    .put(`/api/clients/${this.clientData.id}`, data)
+                    .then(response => {
+                        alert('Client successfully updated');
 
                         this.redirectToClients();
 

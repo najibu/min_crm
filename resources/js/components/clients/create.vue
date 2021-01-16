@@ -12,6 +12,7 @@
                     <div class="card-body">
                         <clients-form
                             :isNew="isNew"
+                            :clientData="clientData"
                         ></clients-form>
                     </div>
                 </div>
@@ -25,7 +26,10 @@
         props: {
             isNew: {
                 default: true
-            }
+            },
+            clientData: {
+                type: Object
+            },
         }
     };
 </script>

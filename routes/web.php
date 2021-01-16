@@ -23,6 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::resource('clients', 'ClientController', [
-        'only' => ['index', 'create', 'show']
+        'only' => ['index', 'create', 'show', 'edit']
     ]);
 });

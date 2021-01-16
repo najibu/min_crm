@@ -30,14 +30,54 @@ class ClientController extends Controller
      */
     public function store(Requests\StoreRequest $request, Client $client)
     {
+        $data = $this->processData($request);
+
+        $client->create($data);
+
+        return response()->json('Client successfully created.');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Requests\StoreRequest $request, Client $client)
+    {
+        $data = $this->processData($request);
+
+        $client->update($data);
+
+        return response()->json('Client successfully update.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Client $client)
+    {
+        $client->delete();
+
+        return response()->json('Client successfully deleted.');
+    }
+
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function processData($request)
+    {
         $data = $request->except('avatar');
 
         $image = $request->avatar;
 
         $data['avatar'] = Storage::disk('local')->put('public', $image);
 
-        $client->create($data);
-
-        return response()->json('Client successfully created.');
+        return $data;
     }
 }

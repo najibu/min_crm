@@ -25,6 +25,7 @@ Vue.component('clients-index', require('./components/clients/index.vue').default
 Vue.component('clients-show', require('./components/clients/show.vue').default);
 Vue.component('clients-create', require('./components/clients/create.vue').default);
 Vue.component('clients-form', require('./components/clients/form.vue').default);
+Vue.component('clients-edit', require('./components/clients/edit.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

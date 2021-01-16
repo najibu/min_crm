@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use App\Http\Requests\Client as Requests;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -47,29 +46,6 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Client $client)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Client $client)
-    {
-        //
+        return view('clients.edit', compact('client'));
     }
 }
