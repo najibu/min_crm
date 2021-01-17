@@ -25,9 +25,9 @@ class StoreRequest extends FormRequest
     {
         return [
             'first_name' => 'required|string|min:2|max:255',
-            'last_name' => 'required|string|min:2|max:255',
-            'avatar' => 'required|file|mimetypes:image/*|dimensions:min_width=100,min_height=100',
-            'email' => 'required|email',
+            'last_name'  => 'required|string|min:2|max:255',
+            'avatar'     => 'required|file|mimetypes:image/*|dimensions:min_width=100,min_height=100',
+            'email'      => 'required|email'
         ];
     }
 }
