@@ -44,13 +44,13 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\StoreRequest $request, Client $client)
+    public function update(Requests\UpdateRequest $request, Client $client)
     {
         $data = $this->processData($request);
 
         $client->update($data);
 
-        return response()->json('Client successfully update.');
+        return response()->json('Client successfully updated.');
     }
 
     /**

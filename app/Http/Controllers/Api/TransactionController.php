@@ -46,7 +46,7 @@ class TransactionController extends Controller
     {
         $transaction->update($request->all());
 
-        return response()->json('Transaction successfully update.');
+        return response()->json('Transaction successfully updated.');
     }
 
     /**
