@@ -76,16 +76,12 @@ class ClientController extends Controller
 
         $image = $request->avatar;
 
-        if (is_string($image)) {
-            $data['avatar'] = $image;
+        if ($image) {
+            $fileName = $image->getClientOriginalName();
+            Storage::putFileAs("public", $image, $fileName);
 
-            return $data;
+            $data['avatar'] = $fileName;
         }
-
-        $fileName = $image->getClientOriginalName();
-        Storage::putFileAs("public", $image, $fileName);
-
-        $data['avatar'] = $fileName;
 
         return $data;
     }
